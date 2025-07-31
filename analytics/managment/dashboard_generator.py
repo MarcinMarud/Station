@@ -1,11 +1,4 @@
-#!/usr/bin/env python3
-"""
-Power BI Dashboard Data Refresh Script
-- Updates existing Power BI dashboard with fresh data from database views
-- No pandas or openpyxl dependencies
-- Automatically detects and refreshes all analytics views
-- Windows compatible with proper logging and Unicode handling
-"""
+
 
 import psycopg2
 import json

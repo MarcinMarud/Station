@@ -1,24 +1,4 @@
 #!/usr/bin/env python3
-"""
-Station Data Pipeline Orchestrator
-==================================
-This is the main file that runs the entire data pipeline in the correct order:
-
-1. Data Generation (generator.py)
-2. Data Loading to Staging (loading_data.py)
-3. Data Cleaning & Validation (cleaning_validating_data.py)
-4. Clean Data Insertion to Production (clean_data_insertion.py)
-5. Analytics Data Loading (loading_analytics_data.py)
-6. Analytics Views Creation (views_creator.py)
-7. Historical Data Saving (historical_data_saving.py)
-8. Dashboard Data Refresh (dashboard_generator.py)
-
-Usage:
-    python main.py                    # Run full pipeline
-    python main.py --skip-generation  # Skip data generation step
-    python main.py --dashboard-only   # Only refresh dashboard
-    python main.py --schedule 60      # Run pipeline every 60 minutes
-"""
 
 import os
 import sys
