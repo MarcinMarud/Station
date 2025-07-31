@@ -1,0 +1,53 @@
+cultureInfo pl-PL
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "analytics_rolling_orders_sum.full_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "analytics rolling_orders_sum",
+			          "ConceptualProperty": "full_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "FULL NAME FILTER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "analytics_rolling_orders_sum.dist_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "analytics rolling_orders_sum",
+			          "ConceptualProperty": "dist_date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "DATE FILTER": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

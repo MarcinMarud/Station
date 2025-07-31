@@ -1,0 +1,62 @@
+table 'analytics top_customers'
+	lineageTag: be055fa3-40dd-4ba9-a134-35efde32aed0
+
+	column customer_name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: ce0a9e98-21ff-4ab2-a8b3-8cd73eca93f1
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0063b684-c729-4b4a-9519-b4b2934d8348
+		summarizeBy: sum
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_count
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 528cb67d-da24-4076-81bd-3eaca026ccae
+		summarizeBy: sum
+		sourceColumn: order_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column rnk
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 499b7f1c-31aa-40a3-bbaf-4df314b7e535
+		summarizeBy: sum
+		sourceColumn: rnk
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount_percentage
+		dataType: double
+		sourceProviderType: decimal
+		lineageTag: ee862e1f-d341-47d4-9f26-2feb2e558145
+		summarizeBy: sum
+		sourceColumn: discount_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'analytics top_customers' = m
+		mode: directQuery
+		source =
+				let
+				    Źródło = PostgreSQL.Database("localhost", "Station"),
+				    analytics_top_customers = Źródło{[Schema="analytics",Item="top_customers"]}[Data]
+				in
+				    analytics_top_customers
+

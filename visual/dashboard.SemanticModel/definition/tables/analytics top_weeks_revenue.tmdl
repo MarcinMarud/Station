@@ -1,0 +1,52 @@
+table 'analytics top_weeks_revenue'
+	lineageTag: eee96b86-c42a-4aea-ae74-7c0e66dd8324
+
+	column month
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 04dbe00f-145d-45c4-af1b-38ef9710c3db
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_period
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 6fd62aad-d782-428b-be51-9879306969fe
+		summarizeBy: none
+		sourceColumn: week_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekly_revenue
+		dataType: double
+		sourceProviderType: decimal
+		lineageTag: 7ba45e0a-d857-4168-8977-cc65a96dd309
+		summarizeBy: sum
+		sourceColumn: weekly_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentage_of_month
+		dataType: double
+		sourceProviderType: decimal
+		lineageTag: c2951b28-0592-4a8f-a5f1-2dc95bb5ac4f
+		summarizeBy: sum
+		sourceColumn: percentage_of_month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'analytics top_weeks_revenue' = m
+		mode: directQuery
+		source =
+				let
+				    Źródło = PostgreSQL.Database("localhost", "Station"),
+				    analytics_top_weeks_revenue = Źródło{[Schema="analytics",Item="top_weeks_revenue"]}[Data]
+				in
+				    analytics_top_weeks_revenue
+

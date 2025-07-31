@@ -1,0 +1,51 @@
+table 'analytics top_weeks_orders'
+	lineageTag: 3fb271b4-0be0-478b-bc35-9b04537a91d9
+
+	column month
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 68c347a6-014a-4b60-822c-7ff33bb66c34
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_period
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 94451fec-4378-4e28-98ab-5dd6d093cd47
+		summarizeBy: none
+		sourceColumn: week_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekly_orders
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: d3c344bd-b9a5-42fb-88ac-76c6bbceca67
+		summarizeBy: sum
+		sourceColumn: weekly_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentage_of_month
+		dataType: double
+		sourceProviderType: decimal
+		lineageTag: af3ccd3c-c66a-42d6-b01d-ac741f0c91f6
+		summarizeBy: sum
+		sourceColumn: percentage_of_month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'analytics top_weeks_orders' = m
+		mode: directQuery
+		source =
+				let
+				    Źródło = PostgreSQL.Database("localhost", "Station"),
+				    analytics_top_weeks_orders = Źródło{[Schema="analytics",Item="top_weeks_orders"]}[Data]
+				in
+				    analytics_top_weeks_orders
+

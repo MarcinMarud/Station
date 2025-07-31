@@ -1,0 +1,32 @@
+table 'analytics top_spenders'
+	lineageTag: f0d2b0b6-40c7-4bc5-8139-23875d4893a2
+
+	column full_name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 3f3dec5d-45d9-4d94-890b-dc7fd1313b95
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_spend
+		dataType: double
+		sourceProviderType: decimal
+		lineageTag: 655024fa-11b1-492f-b0d2-421fbe36d37e
+		summarizeBy: sum
+		sourceColumn: total_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'analytics top_spenders' = m
+		mode: directQuery
+		source =
+				let
+				    Źródło = PostgreSQL.Database("localhost", "Station"),
+				    analytics_top_spenders = Źródło{[Schema="analytics",Item="top_spenders"]}[Data]
+				in
+				    analytics_top_spenders
+

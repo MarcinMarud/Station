@@ -1,0 +1,25 @@
+model Model
+	culture: pl-PL
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pl-PL
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["analytics rolling_orders_sum","analytics top_customers","analytics top_fuel_revenue","analytics top_spenders","analytics top_weeks_orders","analytics top_weeks_revenue"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.145.1457.0 (25.07)+6e87ffa743c5aa106a85a0b5e383d76d522045ba
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'analytics rolling_orders_sum'
+ref table 'analytics top_customers'
+ref table 'analytics top_fuel_revenue'
+ref table 'analytics top_spenders'
+ref table 'analytics top_weeks_orders'
+ref table 'analytics top_weeks_revenue'
+
+ref cultureInfo pl-PL
+

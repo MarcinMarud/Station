@@ -1,0 +1,32 @@
+table 'analytics top_fuel_revenue'
+	lineageTag: 95c6b145-ff26-4670-8666-42314f70875d
+
+	column fuel_type
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 1654069c-3fa4-4bd7-8667-d720992d99bc
+		summarizeBy: none
+		sourceColumn: fuel_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_cost
+		dataType: double
+		sourceProviderType: decimal
+		lineageTag: 28c7a5fb-c8a4-4360-8585-841dac749822
+		summarizeBy: sum
+		sourceColumn: total_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'analytics top_fuel_revenue' = m
+		mode: directQuery
+		source =
+				let
+				    Źródło = PostgreSQL.Database("localhost", "Station"),
+				    analytics_top_fuel_revenue = Źródło{[Schema="analytics",Item="top_fuel_revenue"]}[Data]
+				in
+				    analytics_top_fuel_revenue
+

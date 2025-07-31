@@ -1,0 +1,44 @@
+table 'analytics rolling_orders_sum'
+	lineageTag: 4cc5ab6a-b4b2-47b2-9373-d476c03fb694
+
+	column full_name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e5d72694-3dc4-4487-89f7-5d53711838ee
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dist_date
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: b46a4276-b8b1-4038-85fa-2a5a1a9ee9e5
+		summarizeBy: none
+		sourceColumn: dist_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column rolling_sum_over_orders
+		dataType: double
+		sourceProviderType: decimal
+		lineageTag: 2803a6a3-84d7-43fc-a5de-fb65a3485704
+		summarizeBy: sum
+		sourceColumn: rolling_sum_over_orders
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'analytics rolling_orders_sum' = m
+		mode: directQuery
+		source =
+				let
+				    Źródło = PostgreSQL.Database("localhost", "Station"),
+				    analytics_rolling_orders_sum = Źródło{[Schema="analytics",Item="rolling_orders_sum"]}[Data]
+				in
+				    analytics_rolling_orders_sum
+
