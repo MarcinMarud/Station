@@ -6,7 +6,13 @@ This project generates synthetic data for a gas station and processes it through
 Then, I analyze the data using PostgreSQL queries to extract useful business insights. Finally, I build a dashboard in Power BI to visualize key metrics and trends.
 
 Data Generation & Pipeline
-Data generation was done by the faker library in Python. File main.py controls evrything from generation to refreshing dashboard
+Data generation was done by the faker library in Python. File main.py controls evrything from generation to refreshing dashboard. First data is generatef after that it is injected into database where the cleaning and transformating occurs after that it is analyzed
+by postgresSQL queries and loaded into power bi file to refresh the data in the dashboard
+
+ERD Schema
+
+<img width="1548" height="708" alt="obraz" src="https://github.com/user-attachments/assets/626e3097-8e8d-41dd-be7e-3d19b55584fb" />
+
 Database Views
 
 <img width="470" height="139" alt="obraz" src="https://github.com/user-attachments/assets/f0e8956f-409e-4bae-91cd-44707466a27c" />
