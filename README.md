@@ -33,6 +33,3 @@ Technologies Used
 
     Power BI
 
-How to Run
-
-Get everything from repo then make sure everything from requirements is installed and run main.py 
