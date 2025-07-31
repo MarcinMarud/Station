@@ -29,3 +29,4 @@ Technologies Used
 
 How to Run
 
+Get evrything from rep then make sure evrything from requirements is installed and run main.py 
